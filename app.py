@@ -24,7 +24,7 @@ try:
   if choice == 'URL':
     image_path = st.text_input('Enter image URL...')
     try:
-      img = imread(image_path)
+      img = imread(image_path)/255
       img = resize(img, (256, 256))
     except:
       st.markdown('Enter a URL')
@@ -34,7 +34,9 @@ try:
     try:
       img = Image.open(img)
       img = np.array(img)/255
+      print(img.shape)
       img = resize(img, (256, 256))
+      print(img.shape)
     except:
         st.markdown('Upload a valid image')
 
