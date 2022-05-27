@@ -25,8 +25,8 @@ try:
   if choice == 'URL':
     image_path = st.text_input('Enter image URL...')
     try:
-      img = cv2.imread(image_path)[...,::-1]
-      img = cv2.resize(img, (256, 256))
+      img = imread(image_path)
+      img = resize(img, (256, 256))/255
     except:
       st.markdown('Enter a URL')
 
@@ -34,8 +34,8 @@ try:
     img = st.file_uploader('Upload an Image')
     try:
       img = Image.open(img)
-      img = np.array(img).astype(np.uint8)
-      img = cv2.resize(img, (256, 256))
+      img = np.array(img)/255
+      img = resize(img, (256, 256))
       
     except:
         st.markdown('Upload a valid image')
