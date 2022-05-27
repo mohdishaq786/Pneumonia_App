@@ -6,6 +6,7 @@ from tensorflow.keras.models import load_model
 import os
 from skimage.io import imread
 from skimage.transform import resize
+import cv2
 
 from tensorflow.keras.optimizers import Adam
 
@@ -24,8 +25,8 @@ try:
   if choice == 'URL':
     image_path = st.text_input('Enter image URL...')
     try:
-      img = imread(image_path)/255
-      img = resize(img, (256, 256))
+      img = cv2.imread(image_path)[...,::-1]
+      img = cv2.resize(img, (256, 256))
     except:
       st.markdown('Enter a URL')
 
@@ -33,14 +34,11 @@ try:
     img = st.file_uploader('Upload an Image')
     try:
       img = Image.open(img)
-      img = np.array(img)/255
-      print(img.shape)
-      img = resize(img, (256, 256))
-      print(img.shape)
+      img = np.array(img).astype(np.uint8)
+      img = cv2.resize(img, (256, 256))
+      
     except:
         st.markdown('Upload a valid image')
-
- 
 
   pred = model.predict(np.expand_dims(img, 0))[0]
   pred=int(pred>0.8)
