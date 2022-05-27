@@ -6,7 +6,6 @@ from tensorflow.keras.models import load_model
 import os
 from skimage.io import imread
 from skimage.transform import resize
-import cv2
 
 from tensorflow.keras.optimizers import Adam
 
