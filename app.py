@@ -21,21 +21,20 @@ try:
   if choice == 'URL':
     image_path = st.text_input('Enter image URL...')
     try:
-      img = imread(image_path)
-      img = resize(img, (256, 256))/255
+      img = imread(image_path)/255
+      img = resize(img, (256, 256))
     except:
       st.markdown('Enter a URL')
 
   if choice == 'Upload Image':
     img = st.file_uploader('Upload an Image')
     try:
-      img = Image.open(img)
-      img = np.array(img)/255
+      img = imread(img)/255
       p = str(img.shape)
       st.text_area(p, height=300) 
-      
-      
       img = resize(img, (256, 256))
+      p = str(img.shape)
+      st.text_area(p, height=300)
       
     except:
         st.markdown('Upload a valid image')
