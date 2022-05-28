@@ -24,6 +24,18 @@ def process(image):
         return img
     else:
         pass #st.text('Upload a Image')	
+ 
+def predict(image):
+    img = gray2rgb(image)
+    img = np.expand_dims(img, axis = 0)   
+    pred = model.predict(img)[0]
+    pred = int(pred>=0.9)
+    if pred == 1:
+        class_ = 'Pneumonia'
+    else:
+        class_ = 'Normal'
+    
+    st.title('Result: ' + class_)
 
 choice = st.selectbox('Choose one of the following', ('URL', 'Upload Image'))
 try:
@@ -40,18 +52,6 @@ try:
       img = process(img)
     except:
         st.markdown('Upload a valid image')
-
-def predict(image):
-    img = gray2rgb(image)
-    img = np.expand_dims(img, axis = 0)   
-    pred = model.predict(img)[0]
-    pred = int(pred>=0.9)
-    if pred == 1:
-        class_ = 'Pneumonia'
-    else:
-        class_ = 'Normal'
-    
-    st.title('Result: ' + class_)
 
 if img is not None:
     predict(img)
