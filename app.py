@@ -67,7 +67,5 @@ try:
 except:
   pass
 
-try:
+if imge is not None:
   predict(img)
-except:
-  pass
