@@ -46,11 +46,12 @@ def predict(image):
         class_ = 'Normal'
         
     st.title('Result: ' + class_)
-    st.title('Probality: ' + str(prob[0]))
 
     if class_ == 'Pneumonia':
+      st.title('Probality: ' + str(prob[0]))
       st.title('Kindly contact the doctor')
     else:
+      st.title('Probality: ' + str(1-prob[0]))
       st.title('Well and good')
     
 choice = st.selectbox('Choose one of the following', ('URL', 'Upload Image'))
