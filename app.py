@@ -16,6 +16,7 @@ ref_lab={0 :'NORMAL', 1 :'PNEUMONIA'}
 model = load_model('model.h5', compile = False)
 
 st.title('Pneumonia Detector')
+st.header('Please upload the Chest X-ray')
 st.image('https://upload.wikimedia.org/wikipedia/commons/8/81/Chest_radiograph_in_influensa_and_H_influenzae%2C_posteroanterior%2C_annotated.jpg', width = 500)
 
 
