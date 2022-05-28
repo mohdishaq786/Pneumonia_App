@@ -34,16 +34,16 @@ def predict(image):
     pred = model.predict(img)[0]
     prob = pred
     pred = int(pred>=0.9)
-    
-    st.title('Result: ' + class_)
-    st.title('Probality: ' + str(prob))
-    
+        
     if pred == 1:
         class_ = 'Pneumonia'
         
     else:
         class_ = 'Normal'
-    
+        
+    st.title('Result: ' + class_)
+    st.title('Probality: ' + str(prob))
+
     if class_ == 'Pneumonia':
       st.title('Kindly contact the doctor')
     else:
