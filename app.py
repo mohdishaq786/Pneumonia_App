@@ -6,6 +6,7 @@ from tensorflow.keras.models import load_model
 import os
 from skimage.io import imread
 from skimage.transform import resize
+from skimage.color import gray2rgb
 from PIL import Image
 
 ref_lab={0 :'NORMAL', 1 :'PNEUMONIA'}
@@ -23,6 +24,7 @@ try:
     try:
       img = imread(image_path)/255
       img = resize(img, (256, 256))
+      img = gray2rgb(img)
     except:
       st.markdown('Enter a URL')
 
@@ -33,6 +35,7 @@ try:
       p = str(img.shape)
       st.text_area(p, height=300) 
       img = resize(img, (256, 256))
+      img = gray2rgb(img)
       p = str(img.shape)
       st.text_area(p, height=300)
       
