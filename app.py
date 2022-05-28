@@ -53,5 +53,7 @@ try:
     except:
         st.markdown('Upload a valid image')
 
-if img is not None:
-    predict(img)
+try:
+  predict(img)
+except:
+  pass
