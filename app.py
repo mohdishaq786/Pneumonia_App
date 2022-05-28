@@ -51,7 +51,9 @@ try:
     try:
       img = process(img)
     except:
-        st.markdown('Upload a valid image')
+      st.markdown('Upload a valid image')
+except:
+  pass
 
 try:
   predict(img)
