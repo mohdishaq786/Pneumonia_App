@@ -42,7 +42,7 @@ def predict(image):
         class_ = 'Normal'
         
     st.title('Result: ' + class_)
-    st.title('Probality: ' + str(prob))
+    st.title('Probality: ' + str(prob[0]))
 
     if class_ == 'Pneumonia':
       st.title('Kindly contact the doctor')
