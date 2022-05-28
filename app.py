@@ -6,13 +6,7 @@ from tensorflow.keras.models import load_model
 import os
 from skimage.io import imread
 from skimage.transform import resize
-
-from tensorflow.keras.optimizers import Adam
-
 from PIL import Image
-
-
-st.background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
 
 ref_lab={0 :'NORMAL', 1 :'PNEUMONIA'}
 model = load_model('model.h5', compile = False)
@@ -37,6 +31,10 @@ try:
     try:
       img = Image.open(img)
       img = np.array(img)/255
+      p = str(img.shape)
+      st.text_area(p, height=300) 
+      
+      
       img = resize(img, (256, 256))
       
     except:
