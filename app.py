@@ -6,6 +6,9 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 from tensorflow.keras.models import load_model 
+import requests
+from io import BytesIO
+
 model = load_model('model.h5')
   
 st.title('Pneumonia Detector')
@@ -20,7 +23,8 @@ def process(image):
         st.image(img, caption = 'Input', width = 256)
         return img
       else:
-        img = imread(image)
+        response = requests.get(image)
+        img = np.array(Image.open(BytesIO(response.content)))
         img = img/255
         img = resize(img, (256, 256))
         st.image(img, caption = 'Input', width = 256)
