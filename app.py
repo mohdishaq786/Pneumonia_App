@@ -17,14 +17,14 @@ st.image('https://upload.wikimedia.org/wikipedia/commons/8/81/Chest_radiograph_i
 def process(image):
     if image is not None:
       if type(image) != str:
-        img = np.array(Image.open(image))
+        img = np.array(Image.open(image).convert('RGB'))
         img = img/255
         img = resize(img, (256, 256))
         st.image(img, caption = 'Input', width = 256)
         return img
       else:
         response = requests.get(image)
-        img = np.array(Image.open(BytesIO(response.content)))
+        img = np.array(Image.open(BytesIO(response.content).convert('RGB')))
         img = img/255
         img = resize(img, (256, 256))
         st.image(img, caption = 'Input', width = 256)
@@ -33,8 +33,7 @@ def process(image):
         pass #st.text('Upload a Image')	
  
 def predict(image):
-    img = gray2rgb(image)
-    img = np.expand_dims(img, axis = 0)   
+    img = np.expand_dims(image, axis = 0)
     pred = model.predict(img)[0]
     prob = pred
     pred = int(pred>=0.9)
