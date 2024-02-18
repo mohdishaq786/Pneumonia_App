@@ -9,6 +9,17 @@ from tensorflow.keras.models import load_model
 import requests
 from io import BytesIO
 
+import gdown
+
+# URL of the file on Google Drive
+url = 'https://drive.google.com/uc?id=1aHQwFVGh0V3ip7nejm8_txWbiMalpvIk'
+
+# Output file path
+output_path = 'model.h5'
+
+# Downloading the file
+gdown.download(url, output_path, quiet=False)
+
 model = load_model('model.h5')
   
 st.title('Pneumonia Detector')
