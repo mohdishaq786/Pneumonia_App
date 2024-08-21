@@ -25,7 +25,7 @@ if response.status_code == 200:
 else:
     print(f"Failed to download file. Status code: {response.status_code}")
 
-model = load_model('model.h5')
+model = load_model('model.h5', compile=False)
   
 st.title('Pneumonia Detector')
 st.image('https://upload.wikimedia.org/wikipedia/commons/8/81/Chest_radiograph_in_influensa_and_H_influenzae%2C_posteroanterior%2C_annotated.jpg', width = 500)
