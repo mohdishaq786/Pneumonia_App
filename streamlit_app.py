@@ -13,7 +13,7 @@ from io import BytesIO
 output_path = 'model.h5'
 
 # URL of the file to download
-url = 'https://pixel-go-app.apyhi.com/seg_test/pnue.h5'
+url = 'https://pixel-go-app.apyhi.com/ismail_weights/pnue.h5'
 
 response = requests.get(url)
 
