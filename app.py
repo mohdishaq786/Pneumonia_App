@@ -9,16 +9,21 @@ from tensorflow.keras.models import load_model
 import requests
 from io import BytesIO
 
-import gdown
-
-# URL of the file on Google Drive
-url = 'https://drive.google.com/uc?id=1aHQwFVGh0V3ip7nejm8_txWbiMalpvIk'
-
 # Output file path
 output_path = 'model.h5'
 
-# Downloading the file
-gdown.download(url, output_path, quiet=False)
+# URL of the file to download
+url = 'https://pixel-go-app.apyhi.com/seg_test/pnue.h5'
+
+response = requests.get(url)
+
+if response.status_code == 200:
+    # Open a file in write-binary mode and save the content
+    with open(output_path, 'wb') as file:
+        file.write(response.content)
+    print("File downloaded successfully.")
+else:
+    print(f"Failed to download file. Status code: {response.status_code}")
 
 model = load_model('model.h5')
   
